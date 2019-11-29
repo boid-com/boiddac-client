@@ -1,4 +1,4 @@
-import { colors } from "quasar";
+import { colors } from 'quasar'
 
 // {
 //     "is_dark": false,
@@ -15,12 +15,12 @@ import { colors } from "quasar";
 //     }
 //   }
 
-export async function loadTheme({ commit }, theme) {
-  let colorvars = Object.keys(theme.colors);
+export async function loadTheme ({ commit }, theme) {
+  const colorvars = Object.keys(theme.colors)
 
-  commit("setIsDark", theme.isDark);
+  commit('setIsDark', theme.isDark)
   for (let i = 0; i < colorvars.length; i++) {
-    let cv = colorvars[i].replace("$", "");
-    colors.setBrand(cv, theme.colors[colorvars[i]]);
+    const cv = colorvars[i].replace('$', '')
+    colors.setBrand(cv, theme.colors[colorvars[i]])
   }
 }
