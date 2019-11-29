@@ -1,29 +1,29 @@
-import store from "../store";
+import store from '../store'
 
 const Guards = {
-  logInCheck(to, from, next) {
-    if (!store.getters["user/getAccountName"]) {
-      next({ path: "" });
+  logInCheck (to, from, next) {
+    if (!store.getters['user/getAccountName']) {
+      next({ path: '' })
     } else {
-      next();
+      next()
     }
   },
-  custodianCheck(to, from, next) {
-    let isCustodian = store.getters["user/getIsCustodian"];
+  custodianCheck (to, from, next) {
+    const isCustodian = store.getters['user/getIsCustodian']
     if (!isCustodian) {
-      next({ path: "" });
+      next({ path: '' })
     } else {
-      next();
+      next()
     }
   },
-  memberCheck(to, from, next) {
-    let status = store.getters["user/getMemberStatus"];
-    if (status !== "member") {
-      next({ path: "" });
+  memberCheck (to, from, next) {
+    const status = store.getters['user/getMemberStatus']
+    if (status !== 'member') {
+      next({ path: '' })
     } else {
-      next();
+      next()
     }
   }
-};
+}
 
-export default Guards;
+export default Guards

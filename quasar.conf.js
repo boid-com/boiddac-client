@@ -1,15 +1,14 @@
 // Configuration for your app
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const build_config = require('./src/extensions/statics/config/build.config.json');
-const favicon_url = require('./src/extensions/statics/config/theme.json').images.favicon_url;
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const build_config = require('./src/extensions/statics/config/build.config.json')
+const favicon_url = require('./src/extensions/statics/config/theme.json').images.favicon_url
 
 module.exports = function (ctx) {
-  
   return {
-    htmlVariables: { 
+    htmlVariables: {
       host: build_config.host_no_backslash,
       meta_description: build_config.meta_description,
-      favicon_url: favicon_url 
+      favicon_url: favicon_url
     },
     // app plugins (/src/plugins)
     plugins: [
@@ -38,8 +37,8 @@ module.exports = function (ctx) {
     supportIE: false,
     build: {
 
-      beforeDev: async function(){
-        console.log('before dev......');
+      beforeDev: async function () {
+        console.log('before dev......')
         return new Promise(resolve => setTimeout(resolve, 2000))
       },
 
@@ -52,22 +51,21 @@ module.exports = function (ctx) {
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
-      extendWebpack(cfg) {
-
+      extendWebpack (cfg) {
         cfg.resolve.extensions = [...cfg.resolve.extensions, ...['.json']]
 
         cfg.module.rules.push({
           test: /\.json$/i,
           type: 'javascript/auto',
-          loader: 'json-loader',
-        });
+          loader: 'json-loader'
+        })
 
         cfg.module.rules.push({
           resourceQuery: /blockType=i18n/,
           use: [
-            { loader: '@kazupon/vue-i18n-loader' },
+            { loader: '@kazupon/vue-i18n-loader' }
           ]
-        });
+        })
 
         cfg.module.rules.push({
           enforce: 'pre',
@@ -77,17 +75,17 @@ module.exports = function (ctx) {
           options: {
             fix: true
           }
-        });
+        })
 
-        cfg.plugins.push( 
+        cfg.plugins.push(
           new CopyWebpackPlugin([
-              { context: `${__dirname}/src/extensions/branding/images/`,from:'*.*', to:'branding/images', toType: 'dir'},
-              { context: `${__dirname}/src/extensions/branding/images/icons`,from:'*.*', to:'branding/images/icons', toType: 'dir'},
-              { context: `${__dirname}/src/extensions/branding/images/logo`,from:'*.*', to:'branding/images/logo', toType: 'dir'},
-              { context: `${__dirname}/src/extensions/branding/images/social_share_preview`,from:'*.*', to:'branding/images/social_share_preview', toType: 'dir'}
-            ]
-           ) 
-        );
+            { context: `${__dirname}/src/extensions/branding/images/`, from: '*.*', to: 'branding/images', toType: 'dir' },
+            { context: `${__dirname}/src/extensions/branding/images/icons`, from: '*.*', to: 'branding/images/icons', toType: 'dir' },
+            { context: `${__dirname}/src/extensions/branding/images/logo`, from: '*.*', to: 'branding/images/logo', toType: 'dir' },
+            { context: `${__dirname}/src/extensions/branding/images/social_share_preview`, from: '*.*', to: 'branding/images/social_share_preview', toType: 'dir' }
+          ]
+          )
+        )
 
         for (const rule of cfg.module.rules) {
           if (!rule.oneOf) continue
@@ -194,29 +192,29 @@ module.exports = function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            'src': 'extensions/branding/images/icons/icon-128x128.png',
-            'sizes': '128x128',
-            'type': 'image/png'
+            src: 'extensions/branding/images/icons/icon-128x128.png',
+            sizes: '128x128',
+            type: 'image/png'
           },
           {
-            'src': 'extensions/branding/images/icons/icon-192x192.png',
-            'sizes': '192x192',
-            'type': 'image/png'
+            src: 'extensions/branding/images/icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
           },
           {
-            'src': 'extensions/branding/images/icons/icon-256x256.png',
-            'sizes': '256x256',
-            'type': 'image/png'
+            src: 'extensions/branding/images/icons/icon-256x256.png',
+            sizes: '256x256',
+            type: 'image/png'
           },
           {
-            'src': 'extensions/branding/images/icons/icon-384x384.png',
-            'sizes': '384x384',
-            'type': 'image/png'
+            src: 'extensions/branding/images/icons/icon-384x384.png',
+            sizes: '384x384',
+            type: 'image/png'
           },
           {
-            'src': 'extensions/branding/images/icons/icon-512x512.png',
-            'sizes': '512x512',
-            'type': 'image/png'
+            src: 'extensions/branding/images/icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           }
         ]
       }
@@ -226,7 +224,7 @@ module.exports = function (ctx) {
     },
     electron: {
       // bundler: 'builder', // or 'packager'
-      extendWebpack(cfg) {
+      extendWebpack (cfg) {
         // do something with Electron process Webpack cfg
       },
       packager: {

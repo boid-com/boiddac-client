@@ -1,0 +1,83 @@
+{
+  "dacName": "Boid DAC",
+  "dacScope": "boidtestdac2",
+  "accounts": {
+    "treasuryAccount": {
+      "name": "bo1ddacfunds"
+    },
+    "authAccount": {
+      "name": "boiddacauth2"
+    }
+  },
+  "contracts": {
+    "token": {
+      "name": "bo1ddactoken",
+      "symbol": "BOID",
+      "totalSupply": 25000000000.0000,
+      "decimals": 4
+    },
+    "system_token": {
+      "name": "eosio.token",
+      "symbol": "EOS",
+      "decimals": 4
+    },
+    "custodian": {
+      "name": "bo1dcustodia",
+      "memo": "bo1dcustodia",
+      "enable_voting": true
+    },
+    "bot": {
+      "name": "piecesnbitss"
+    },
+    "system_msig": {
+      "name": "eosio.msig"
+    },
+    "dac_msig": {
+      "name": "bo1dmultisig"
+    },
+    "wpproposal": {
+      "name": "boidproposal"
+    },
+    "escrow": {
+      "name": "boidescrow11"
+    }
+
+  },
+
+  "financial_page_graphs": [
+    {
+      "account": "eosdacserval",
+      "contract": "eosio.token",
+      "symbol": "EOS",
+      "description": "The EOS Mainnet block producer account for eosDAC which receives Block Producer rewards."
+        },
+    {
+      "account": "eosdacdoshhq",
+      "contract": "eosio.token",
+      "symbol": "EOS",
+      "description": "The DAC owner account where DAC funds are secured and controlled by a 12-account multisig permission system of elected custodians."
+        },
+    {
+      "account": "dacocoiogmbh",
+      "contract": "eosio.token",
+      "symbol": "EOS",
+      "description": "The current eosDAC service provider account which manages payroll, employment contracts, and real-world interactions on behalf of the DAC."
+        },
+    {
+      "account": "dacelections",
+      "contract": "kasdactokens",
+      "symbol": "KASDAC",
+      "description": "custodian contract description"
+        }
+      ],
+
+  "api": {
+    "default_eos_node": "http://api.dac.boid.com:8888",
+    "memberclient_state_api": "http://api.dac.boid.com:8383/v1/eosdac"
+  },
+
+  "external": {
+    "homepage": "https://www.boid.com",
+    "explorer": "https://kylin.bloks.io"
+  }
+}
