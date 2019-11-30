@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "build": "node ./build_scripts/before.js && quasar build && cp _redirects dist/spa-mat",
-    "dev": "node ./build_scripts/before.js && quasar dev",
+    "dev": "DEFAULT_NETWORK=kylin node ./build_scripts/before.js && quasar dev",
     "add_extensions": "git -C ./src clone"
   },
   "dependencies": {

@@ -1,3 +1,3 @@
-export function getExample (state) {
-  return state.example
+export function getExample(state) {
+  return state.example;
 }
