@@ -72,8 +72,8 @@
       ],
 
   "api": {
-    "default_eos_node": "http://api.dac.boid.com:8888",
-    "memberclient_state_api": "http://api.dac.boid.com:8383/v1/eosdac"
+    "default_eos_node": "https://api.dac.boid.com:1111",
+    "memberclient_state_api": "https://api.dac.boid.com:443/v1/eosdac"
   },
 
   "external": {

@@ -7,4 +7,4 @@ module.exports = {
   expired: 5,
   cancelled: 100,
   claimed: 101
-}
+};
