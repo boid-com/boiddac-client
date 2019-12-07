@@ -396,7 +396,11 @@ export default {
     quantityToPrecision(quantity) {
       if (quantity) {
         let [quan] = quantity.split(" ");
-        return quan.split(".")[1].length;
+        const [, decimals] = quan.split(".");
+        if (decimals) {
+          return decimals.length;
+        }
+        return 0;
       }
     },
 
@@ -424,7 +428,11 @@ export default {
       let actions = [registeraction];
 
       if (!this.checkAlreadyStaked) {
-        actions.unshift(stakeaction);
+        const stake_amount = this.assetToNumber(this.verifyAndGetStakeAmount);
+        if ((stake_amount * 1000) > 0){
+            actions.unshift(stakeaction);
+        }
+
       }
 
       let result = await this.$store.dispatch("user/transact", {
