@@ -43,5 +43,5 @@ export default {
     claim_approval_threshold_percent: null,
     escrow_expiry: null
   },
-  wpCategories: require("../../extensions/statics/config/wp_categories.json")
-};
+  wpCategories: require('../../extensions/statics/config/wp_categories.json')
+}
