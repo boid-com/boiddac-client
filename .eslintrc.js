@@ -10,10 +10,10 @@ module.exports = {
       browser: true
     },
   
-    extends: ['plugin:vue/essential', '@vue/standard', 'prettier'],
+    extends: ['plugin:vue/essential', '@vue/standard'],
   
     // required to lint *.vue files
-    plugins: ['vue', 'prettier'],
+    plugins: ['vue'],
   
     globals: {
       ga: true, // Google Analytics
@@ -24,8 +24,7 @@ module.exports = {
     // add your custom rules here
     rules: {
       // "standard/computed-property-even-spacing": "off",
-      'prettier/prettier': 'warn',
-      // semi: 'on',
+      semi: 'off',
       // Temp Rules
       eqeqeq: 'off',
       'spaced-comment': 'off',

@@ -164,7 +164,11 @@ export default {
       const map = { open: 1, executed: 2, cancelled: 0, expired: 3 };
       //calculate skip
       let skip = (this.pagination.page - 1) * this.pagination.items_per_page;
-      // this.getProposals({find: find, skip: skip, limit: this.pagination.items_per_page});
+      // this.getProposals({
+      //   find: find,
+      //   skip: skip,
+      //   limit: this.pagination.items_per_page
+      // });
       this.getProposals({
         status: map[this.active_tab],
         limit: this.pagination.items_per_page,
@@ -176,6 +180,7 @@ export default {
       this.msigs_loading = true;
       this.proposals = [];
       let p = await this.$store.dispatch("dac/fetchMsigProposals", query);
+      console.log('query',query)
       console.log("msigs", p);
       if (p) {
         this.total = p.count;

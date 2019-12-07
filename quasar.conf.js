@@ -67,15 +67,15 @@ module.exports = function (ctx) {
           ]
         })
 
-        cfg.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /node_modules/,
-          options: {
-            fix: true
-          }
-        })
+        // cfg.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /node_modules/,
+        //   options: {
+        //     fix: true
+        //   }
+        // })
 
         cfg.plugins.push(
           new CopyWebpackPlugin([

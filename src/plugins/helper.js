@@ -1,99 +1,99 @@
 class Helper {
-  constructor(store) {
-    this.store = store;
+  constructor (store) {
+    this.store = store
   }
 
-  isUrl(url) {
-    if (typeof url !== "string") {
-      return false;
+  isUrl (url) {
+    if (typeof url !== 'string') {
+      return false
     }
-    const re = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-    return re.test(url);
+    const re = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/
+    return re.test(url)
   }
 
-  isEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+  isEmail (email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
   }
 
-  noBackSlash(url) {
-    return url.replace(/\/+$/, "");
+  noBackSlash (url) {
+    return url.replace(/\/+$/, '')
   }
 
-  isAccountname(accountname) {
-    const re = /^[a-z1-5.]{1,12}$/;
-    return re.test(accountname);
+  isAccountname (accountname) {
+    const re = /^[a-z1-5.]{1,12}$/
+    return re.test(accountname)
   }
 
-  toLocaleNumber(number, decimals = 4) {
-    if (!number) return number;
-    const test = this.store.getters["user/getSettingByName"]("locale_numbers")
-      .value;
+  toLocaleNumber (number, decimals = 4) {
+    if (!number) return number
+    const test = this.store.getters['user/getSettingByName']('locale_numbers')
+      .value
     if (test) {
       return parseFloat(number).toLocaleString(undefined, {
         minimumFractionDigits: decimals
-      });
+      })
     } else {
-      return number;
+      return number
     }
   }
 
-  assetToLocaleNumber(asset) {
-    if (!asset) return asset;
-    const [quantity, symbol] = asset.split(" ");
-    return `${this.toLocaleNumber(parseFloat(quantity))} ${symbol}`;
+  assetToLocaleNumber (asset) {
+    if (!asset) return asset
+    const [quantity, symbol] = asset.split(' ')
+    return `${this.toLocaleNumber(parseFloat(quantity))} ${symbol}`
   }
 
-  assetToNumber(asset) {
+  assetToNumber (asset) {
     if (asset) {
-      return parseFloat(asset.split(" ")[0]);
+      return parseFloat(asset.split(' ')[0])
     }
   }
 
-  numberToAsset(num, symbol) {
-    return `${num} ${symbol}`;
+  numberToAsset (num, symbol) {
+    return `${num} ${symbol}`
   }
 
-  fullHostToJson(fullhost) {
-    const [protocol, host, port] = fullhost.split(":");
+  fullHostToJson (fullhost) {
+    const [protocol, host, port] = fullhost.split(':')
 
     const parts = {
       protocol: protocol,
-      host: host.replace(/\//g, ""),
-      port: port || (protocol === "https" ? "443" : "80")
-    };
+      host: host.replace(/\//g, ''),
+      port: port || (protocol === 'https' ? '443' : '80')
+    }
 
-    return parts;
+    return parts
   }
 
-  randomIntFromInterval(min, max) {
+  randomIntFromInterval (min, max) {
     // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  randomName() {
-    let name = "";
-    const possible = "abcdefghijklmnopqrstuvwxyz12345.";
+  randomName () {
+    let name = ''
+    const possible = 'abcdefghijklmnopqrstuvwxyz12345.'
     for (let i = 0; i < 12; i++) {
-      name += possible.charAt(Math.floor(Math.random() * possible.length));
+      name += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    return name;
+    return name
   }
 
-  truncate(str, length) {
-    const dots = str.length > length ? "..." : "";
-    return str.substring(0, length) + dots;
+  truncate (str, length) {
+    const dots = str.length > length ? '...' : ''
+    return str.substring(0, length) + dots
   }
 
-  chunkArray(arr, chunksize) {
-    const R = [];
+  chunkArray (arr, chunksize) {
+    const R = []
     for (var i = 0; i < arr.length; i += chunksize) {
-      R.push(arr.slice(i, i + chunksize));
+      R.push(arr.slice(i, i + chunksize))
     }
-    return R;
+    return R
   }
 }
 
 export default ({ Vue, store }) => {
-  Vue.prototype.$helper = new Helper(store);
-};
+  Vue.prototype.$helper = new Helper(store)
+}
